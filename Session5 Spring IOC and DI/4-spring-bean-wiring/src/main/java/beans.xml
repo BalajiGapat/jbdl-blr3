@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		<!-- instructions to spring container -->
+		<bean id="accService" class="com.geek.bean.impl.AccountServiceImpl">
+			<!--
+			<property name="accountRep" ref="savings">
+			</property>
+			-->
+			<!--<constructor-arg ref="savings"></constructor-arg>-->
+		</bean>
+		<bean id="savings" class="com.geek.bean.impl.SavingsAccountRepImpl">
+		</bean>
+		<context:annotation-config></context:annotation-config>
+</beans>
