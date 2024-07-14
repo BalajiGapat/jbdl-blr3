@@ -1,7 +1,19 @@
+@Component
+@Bean
+@Autowired
+@Primary
+@Qualifier
+@Configuration
+@ComponentScan
+
 @ExceptionHandler
 @RestControllerAdvice
 @RestController
 @RequestMapping
 @Autowired
-@GetMapping
+@GetMapping @PutMapping @PostMapping @DeleteMapping
 @PathVariable
+@RequestParam
+@RequestBody
+@XmlRootElement
+@SpringBootApplication
