@@ -1,0 +1,12 @@
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.dto.TransactionDto;
+
+@RestController
+public class TransactionController {
+public TransactionDto transferFunds(TransactionDto dto) {
+	return dto;
+}
+}

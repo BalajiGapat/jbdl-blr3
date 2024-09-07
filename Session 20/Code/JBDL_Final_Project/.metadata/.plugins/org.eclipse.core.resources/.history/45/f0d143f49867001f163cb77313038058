@@ -1,0 +1,22 @@
+package com.example.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.entity.User;
+
+@Service
+public class UserServiceImpl  implements UserSerivice{
+
+	@Override
+	public User saveNewUser(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void sendNotification(String userName, User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

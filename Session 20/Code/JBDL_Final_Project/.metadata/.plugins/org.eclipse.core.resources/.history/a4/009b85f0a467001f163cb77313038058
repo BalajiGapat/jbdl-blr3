@@ -1,0 +1,5 @@
+package com.example.demo;
+
+public interface TransactionService {
+ void transferFunds(int from,int to, float amt);
+}
