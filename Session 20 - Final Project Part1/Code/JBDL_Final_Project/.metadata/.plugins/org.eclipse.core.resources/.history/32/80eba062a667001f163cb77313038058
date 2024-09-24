@@ -1,0 +1,38 @@
+package com.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.entity.Transaction;
+import com.example.entity.TransactionType;
+import com.example.entity.User;
+import com.example.repo.TransactionRepository;
+import com.example.repo.UserRepository;
+
+@Service
+public class TransactionServiceImpl  implements TransactionService{
+	@Autowired
+  private TransactionRepository transRepo;
+	@Autowired
+	private UserRepository userRepo;
+	@Override
+	public void transferFunds(int from, int to, float amt) {
+		User user1=userRepo.findById(from).orElseThrow(()-> new RuntimeException("User not found"));
+		User user2=userRepo.findById(to).orElseThrow(()-> new RuntimeException("User not found"));
+		user1.setAmt(user1.getAmt()-amt);
+		user2.setAmt(user2.getAmt()+amt);
+		Transaction t1= new Transaction();
+		t1.setUserId(from);
+		t1.setAnotherId(to);
+		t1.setTransactionType(TransactionType.DEBIT);
+		t1.setAmt(amt);
+		
+		Transaction t2= new Transaction();
+		t2.setUserId(to);
+		t2.setAnotherId(from);
+		t2.setTransactionType(TransactionType.CREDIT);
+		t2.setAmt(amt);
+
+	}
+
+}

@@ -1,0 +1,39 @@
+package com.example.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Service;
+
+import com.example.entity.User;
+import com.example.repository.UserRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Service
+public class UserServiceImpl  implements UserSerivice{
+	@Autowired
+	private KafkaTemplate<String, String> kafkaTemplate;
+	@Autowired
+private UserRepository userRepo;
+	@Autowired
+	ObjectMapper objectMapper;
+	@Override
+	public User saveNewUser(User user) {
+		userRepo.save(user);
+		sendNotification(user.getUserName(), user);
+		return user;
+	}
+
+	@Override
+	public void sendNotification(String userName, User user) {
+		try {
+		String json=	objectMapper.writeValueAsString(user);
+		System.out.println(json);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//send msg to Kafka
+	}
+
+}

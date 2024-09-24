@@ -1,0 +1,18 @@
+package com.example.demo;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.stereotype.Service;
+@Service
+public class KafkaConsumer {
+	 @Autowired
+	 private SimpleMailMessage simpleMailMsg;
+	@KafkaListener(topics = AppConstants.NEW_USER,groupId = "group-id")
+public void consume(ConsumerRecord<String, String> record ) {
+	System.out.println("******u have a notification********");
+	System.out.println(record.key());
+	System.out.println(record.value());
+}
+}

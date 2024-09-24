@@ -1,0 +1,11 @@
+package com.example.demo;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.KafkaListener;
+
+public class KafkaConsumer {
+	@KafkaListener(topics = AppConstants.NEW_USER,groupId = "group-id")
+public void consume(ConsumerRecord<String, String> record ) {
+	
+}
+}
